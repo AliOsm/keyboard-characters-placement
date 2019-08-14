@@ -1,14 +1,15 @@
 {
-  "number_of_generations": 100,
-  "number_of_characters_placements": 50,
+  "number_of_generations": 250,
+  "number_of_characters_placements": 100,
   "number_of_accepted_characters_placements": 5,
+  "number_of_randomly_injected_characters_placements": 20,
   "number_of_mutation_operations": 2,
   "searching_corpus_path": "data_dir/TED2013 v1.1.txt",
   "searching_corpus_size": 1000,
   "maximum_line_length": 500,
 
   "keyboard_structure": {
-    "name": "29 Keys Keyboard Layout",
+    "name": "Full Layout",
     "width": 25.67,
     "height": 9.48,
     "buttons": [

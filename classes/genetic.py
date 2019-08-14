@@ -12,6 +12,7 @@ class Genetic:
     number_of_generations,
     number_of_characters_placements,
     number_of_accepted_characters_placements,
+    number_of_randomly_injected_characters_placements,
     number_of_mutation_operations,
     searching_corpus_path,
     searching_corpus_size,
@@ -22,6 +23,7 @@ class Genetic:
     self.number_of_generations = number_of_generations
     self.number_of_characters_placements = number_of_characters_placements
     self.number_of_accepted_characters_placements = number_of_accepted_characters_placements
+    self.number_of_randomly_injected_characters_placements = number_of_randomly_injected_characters_placements
     self.number_of_mutation_operations = number_of_mutation_operations
     self.keyboard_structure = keyboard_structure
     self.initial_characters_placement = initial_characters_placement
@@ -90,7 +92,7 @@ class Genetic:
     for i in range(self.number_of_accepted_characters_placements):
       temp_characters_placements.append(copy.deepcopy(self.characters_placements[i]))
 
-    while len(temp_characters_placements) < self.number_of_characters_placements:
+    while len(temp_characters_placements) < self.number_of_characters_placements - self.number_of_randomly_injected_characters_placements:
       a, b = np.random.beta(a=0.5, b=2, size=2)
 
       a = math.floor(a * self.number_of_characters_placements)
@@ -104,13 +106,18 @@ class Genetic:
         self.characters_placements[b]
       ))
 
-      if len(temp_characters_placements) >= self.number_of_characters_placements:
+      if len(temp_characters_placements) >= self.number_of_characters_placements - self.number_of_randomly_injected_characters_placements:
         break
 
       temp_characters_placements.append(self._crossover(
         self.characters_placements[b],
         self.characters_placements[a]
       ))
+
+    while len(temp_characters_placements) < self.number_of_characters_placements:
+      random_characters_placement = copy.deepcopy(temp_characters_placements[0])
+      random_characters_placement.randomize()
+      temp_characters_placements.append(random_characters_placement)
 
     self.characters_placements = temp_characters_placements
 

@@ -34,6 +34,7 @@ if __name__ == '__main__':
     genetic_config['number_of_generations'],
     genetic_config['number_of_characters_placements'],
     genetic_config['number_of_accepted_characters_placements'],
+    genetic_config['number_of_randomly_injected_characters_placements'],
     genetic_config['number_of_mutation_operations'],
     genetic_config['searching_corpus_path'],
     genetic_config['searching_corpus_size'],
