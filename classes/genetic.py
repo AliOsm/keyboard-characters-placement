@@ -118,13 +118,9 @@ class Genetic:
     for characters_placement in self.characters_placements[self.number_of_accepted_characters_placements:]:
       characters_placement.mutate(self.number_of_mutation_operations)
 
-  def write_information(self, dirpath):
+  def save_searching_corpus(self, dirpath):
     with open(os.path.join(dirpath, 'searching_corpus'), 'w') as file:
       file.write('\n'.join(self.searching_corpus))
-
-    with open(os.path.join(dirpath, 'logs'), 'w') as file:
-      file.write('Best characters placement fitness value is %s\n' % self.best_characters_placement.fitness)
-      file.write('Time taken for genetic algorithm is %s minutes\n' % self.time)
 
   def _preprocess_line(self, line):
     return ''.join([character for character in line \

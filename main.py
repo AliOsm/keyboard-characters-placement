@@ -42,7 +42,7 @@ if __name__ == '__main__':
     initial_characters_placement
   )
   genetic.start()
-  genetic.write_information(os.path.dirname(args.genetic_config))
+  genetic.save_searching_corpus(os.path.dirname(args.genetic_config))
 
   info_log('Visualize best characters placement found by genetic algorithm')
   keyboard_structure.visualize(

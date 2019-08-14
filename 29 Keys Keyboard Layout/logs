@@ -504,5 +504,3 @@ info: Wed Aug 14 06:20:28 2019] Start natural selection and crossover
 info: Wed Aug 14 06:20:28 2019] Start mutating characters placements
 info: Wed Aug 14 06:20:28 2019] Time taken for genetic algorithm is 148.39 minutes
 info: Wed Aug 14 06:20:28 2019] Visualize best characters placement found by genetic algorithm
-Best characters placement fitness value is 138458.85
-Time taken for genetic algorithm is 148.39 minutes
