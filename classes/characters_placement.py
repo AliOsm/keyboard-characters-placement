@@ -34,10 +34,18 @@ class CharactersPlacement:
       self.characters_set[i], self.characters_set[j] = self.characters_set[j], self.characters_set[i]
 
   def _order_fixed_characters(self):
+    fixed_characters = list()
+
     for i in range(len(self.characters_set)):
-      while self.characters_set[i].button_id != None and self.characters_set[i].button_id - 1 != i:
-        self.characters_set[self.characters_set[i].button_id - 1], self.characters_set[i] = \
-          self.characters_set[i], self.characters_set[self.characters_set[i].button_id - 1]
+      if self.characters_set[i].button_id != None:
+        fixed_characters.append(self.characters_set[i])
+    self.characters_set = [character for character in self.characters_set \
+      if character.button_id == None]
+
+    fixed_characters = list(sorted(fixed_characters, key=lambda character: character.button_id))
+
+    for character in fixed_characters:
+      self.characters_set.insert(character.button_id - 1, character)
 
   def _order_of_character(self, character):
     for i in range(len(self.characters_set)):

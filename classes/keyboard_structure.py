@@ -21,10 +21,7 @@ class KeyboardStructure:
         size=button['size']
       ))
 
-    for i in range(len(self.buttons)):
-      while self.buttons[i].id - 1 != i:
-        self.buttons[self.buttons[i].id - 1], self.buttons[i] = \
-          self.buttons[i], self.buttons[self.buttons[i].id - 1]
+    self.buttons = list(sorted(self.buttons, key=lambda button: button.id))
 
     self._check_buttons_overlapping()
 

@@ -1,7 +1,0 @@
-info: Wed Aug 14 11:48:56 2019] Load genetic config file: QWERTY/genetic_config.json
-info: Wed Aug 14 11:48:56 2019] Load testing corpus file: 29 Keys Keyboard Layout/searching_corpus
-info: Wed Aug 14 11:48:56 2019] Construct keyboard structure
-info: Wed Aug 14 11:48:56 2019] Construct initial characters placement
-info: Wed Aug 14 11:48:56 2019] Visualize the characters placement
-29 Keys Keyboard Layout
-info: Wed Aug 14 11:48:57 2019] Fitness value: 188978.47
