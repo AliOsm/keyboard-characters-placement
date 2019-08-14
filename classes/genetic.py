@@ -120,7 +120,7 @@ class Genetic:
     self.characters_placements = temp_characters_placements
 
   def random_injection(self):    
-    for _ in self.number_of_randomly_injected_characters_placements:
+    for _ in range(self.number_of_randomly_injected_characters_placements):
       random_characters_placement = copy.deepcopy(self.characters_placements[0])
       random_characters_placement.randomize()
       self.characters_placements.append(random_characters_placement)
