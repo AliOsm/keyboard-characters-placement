@@ -68,6 +68,9 @@ class Genetic:
       info_log('Start natural selection and crossover')
       self.natural_selection_and_crossover()
 
+      info_log('Start random injection')
+      self.random_injection()
+
       info_log('Start mutating characters placements')
       self.mutate_characters_placements()
 
@@ -114,12 +117,13 @@ class Genetic:
         self.characters_placements[a]
       ))
 
-    while len(temp_characters_placements) < self.number_of_characters_placements:
-      random_characters_placement = copy.deepcopy(temp_characters_placements[0])
-      random_characters_placement.randomize()
-      temp_characters_placements.append(random_characters_placement)
-
     self.characters_placements = temp_characters_placements
+
+  def random_injection(self):    
+    for _ in self.number_of_randomly_injected_characters_placements:
+      random_characters_placement = copy.deepcopy(self.characters_placements[0])
+      random_characters_placement.randomize()
+      self.characters_placements.append(random_characters_placement)
 
   def mutate_characters_placements(self):
     for characters_placement in self.characters_placements[self.number_of_accepted_characters_placements:]:
