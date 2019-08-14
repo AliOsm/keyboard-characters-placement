@@ -25,6 +25,7 @@ class CharactersPlacement:
         fitness += keyboard_structure.smallest_distance_from_button_to_finger(button_id)
       keyboard_structure.reset_fingers_locations()
     self.fitness = round(fitness, 2)
+    return self.fitness
 
   def mutate(self, number_of_mutation_operations):
     for _ in range(number_of_mutation_operations):
