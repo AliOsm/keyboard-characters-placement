@@ -1,5 +1,6 @@
 import numpy as np
 
+from helpers import *
 from classes.character import Character
 
 class CharactersPlacement:
@@ -22,6 +23,11 @@ class CharactersPlacement:
     for line in searching_corpus:
       for character in line:
         button_id = self._order_of_character(character)
+
+        if button_id == -1:
+          warning_log('Found unrecognized character \'%s\'' % character)
+          continue
+
         fitness += keyboard_structure.smallest_distance_from_button_to_finger(button_id)
       keyboard_structure.reset_fingers_locations()
     self.fitness = round(fitness, 2)
