@@ -36,17 +36,24 @@ if __name__ == '__main__':
     genetic_config['number_of_accepted_characters_placements'],
     genetic_config['number_of_randomly_injected_characters_placements'],
     genetic_config['number_of_mutation_operations'],
-    genetic_config['searching_corpus_path'],
+    genetic_config['corpus_path'],
     genetic_config['searching_corpus_size'],
+    genetic_config['testing_corpus_size'],
     genetic_config['maximum_line_length'],
     keyboard_structure,
     initial_characters_placement
   )
   genetic.start()
-  genetic.save_searching_corpus(os.path.dirname(args.genetic_config))
+  genetic.save_searching_and_testing_corpus(os.path.dirname(args.genetic_config))
+
+  genetic.best_characters_placement.calculate_fitness(
+    genetic.keyboard_structure,
+    genetic.testing_corpus
+  )
+  info_log('Best characters placement fitness value on testing set: %s' % genetic.best_characters_placement.fitness)
 
   info_log('Visualize best characters placement found by genetic algorithm')
-  keyboard_structure.visualize(
+  genetic.keyboard_structure.visualize(
     dirpath=os.path.dirname(args.genetic_config),
     characters_placement=genetic.best_characters_placement,
     save=True

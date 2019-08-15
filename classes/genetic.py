@@ -14,8 +14,9 @@ class Genetic:
     number_of_accepted_characters_placements,
     number_of_randomly_injected_characters_placements,
     number_of_mutation_operations,
-    searching_corpus_path,
+    corpus_path,
     searching_corpus_size,
+    testing_corpus_size,
     maximum_line_length,
     keyboard_structure,
     initial_characters_placement
@@ -28,25 +29,44 @@ class Genetic:
     self.keyboard_structure = keyboard_structure
     self.initial_characters_placement = initial_characters_placement
 
-    self.searching_corpus = open(searching_corpus_path, 'r').read().split('\n')
-    np.random.shuffle(self.searching_corpus)
+    self.corpus = open(corpus_path, 'r').read().split('\n')
+    np.random.shuffle(self.corpus)
 
-    temp_searching_corpus = list()
-    for line in self.searching_corpus:
-      if len(temp_searching_corpus) >= searching_corpus_size:
+    i = 0
+
+    self.searching_corpus = list()
+    while i < len(self.corpus):
+      if len(self.searching_corpus) >= searching_corpus_size:
         break
 
-      line = self._preprocess_line(line)
+      line = self._preprocess_line(self.corpus[i])
+      i += 1
 
       if len(line) > maximum_line_length:
         continue
 
-      temp_searching_corpus.append(line)
-    self.searching_corpus = temp_searching_corpus
-    
+      self.searching_corpus.append(line)
+
     if len(self.searching_corpus) < searching_corpus_size:
       warning_log('Searching corpus size didn\'t reach %s, its current size is %s' %
         (searching_corpus_size, len(self.searching_corpus)))
+
+    self.testing_corpus = list()
+    while i < len(self.corpus):
+      if len(self.testing_corpus) >= testing_corpus_size:
+        break
+
+      line = self._preprocess_line(self.corpus[i])
+      i += 1
+
+      if len(line) > maximum_line_length:
+        continue
+
+      self.testing_corpus.append(line)
+    
+    if len(self.testing_corpus) < testing_corpus_size:
+      warning_log('Testing corpus size didn\'t reach %s, its current size is %s' %
+        (testing_corpus_size, len(self.testing_corpus)))
 
     self.characters_placements = list()
     for _ in range(self.number_of_characters_placements):
@@ -129,9 +149,12 @@ class Genetic:
     for characters_placement in self.characters_placements[self.number_of_accepted_characters_placements:]:
       characters_placement.mutate(self.number_of_mutation_operations)
 
-  def save_searching_corpus(self, dirpath):
+  def save_searching_and_testing_corpus(self, dirpath):
     with open(os.path.join(dirpath, 'searching_corpus'), 'w') as file:
       file.write('\n'.join(self.searching_corpus))
+
+    with open(os.path.join(dirpath, 'testing_corpus'), 'w') as file:
+      file.write('\n'.join(self.testing_corpus))
 
   def _preprocess_line(self, line):
     return ''.join([character for character in line \
