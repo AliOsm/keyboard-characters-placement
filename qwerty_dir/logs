@@ -1,0 +1,6 @@
+info: Thu Aug 15 11:14:09 2019] Load genetic config file: qwerty_dir/genetic_config.json
+info: Thu Aug 15 11:14:09 2019] Load testing corpus file: search_dir/searching_corpus
+info: Thu Aug 15 11:14:09 2019] Construct keyboard structure
+info: Thu Aug 15 11:14:09 2019] Construct initial characters placement
+info: Thu Aug 15 11:14:09 2019] Visualize the characters placement
+info: Thu Aug 15 11:14:13 2019] Fitness value: 201412.41

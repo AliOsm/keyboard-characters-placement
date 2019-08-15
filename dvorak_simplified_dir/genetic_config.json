@@ -1,6 +1,6 @@
 {
   "keyboard_structure": {
-    "name": "29 Keys Keyboard Layout",
+    "name": "Full Layout",
     "width": 25.67,
     "height": 9.48,
     "buttons": [
@@ -448,31 +448,31 @@
     },
     {
       "character": "k",
-      "button_id": 23
+      "button_id": null
     },
     {
       "character": "x",
-      "button_id": 24
+      "button_id": null
     },
     {
       "character": "b",
-      "button_id": 34
+      "button_id": null
     },
     {
       "character": "m",
-      "button_id": 35
+      "button_id": null
     },
     {
       "character": "w",
-      "button_id": 43
+      "button_id": null
     },
     {
       "character": "v",
-      "button_id": 44
+      "button_id": null
     },
     {
       "character": "z",
-      "button_id": 45
+      "button_id": null
     },
     {
       "character": " ",
