@@ -10,14 +10,36 @@
   "maximum_line_length": 500,
 
   "keyboard_structure": {
+    "_comment_name": "string: name of the keyboard structure",
     "name": "Full Layout",
+    
+    "_comment_width": "float: width of the keyboard layout in centimeters",
     "width": 25.67,
+
+    "_comment_height": "float: height of the keyboard layout in centimeters",
     "height": 9.48,
+    
+    "_comment_buttons": "list: buttons in the keyboard layout",
     "buttons": [
       {
+        "_comment_id": "integer (unique): button id",
         "id": 1,
-        "location": {"x": 2.21, "y": 0.33},
-        "size": {"width": 1.55, "height": 1.5}
+
+        "_comment_location": "xy-axis of the top-left corner of the button",
+        "location": {
+          "_comment_x": "float: x-axis of the top-left corner of the button",
+          "x": 2.21,
+          "_comment_y": "float: y-axis of the top-left corner of the button",
+          "y": 0.33
+        },
+        
+        "_comment_size": "size of the button starting from the top-left corner",
+        "size": {
+          "_comment_width": "float: button width in centimeters",
+          "width": 1.55,
+          "_comment_height": "float: button height in centimeters",
+          "height": 1.5
+        }
       },
       {
         "id": 2,
@@ -252,11 +274,21 @@
     ]
   },
 
+  "_comment_hands": "list: hands on the keyboard layout",
   "hands": [
     {
+      "_comment_fingers": "list: fingers in the hand",
       "fingers": [
         {
-          "location": {"x": 4.385, "y": 4.74},
+          "_comment_location": "xy-axis of the center point of the finger",
+          "location": {
+            "_comment_x": "float: x-axis of the center point of the finger",
+            "x": 4.385,
+            "_comment_y": "float: y-axis of the center point of the finger",
+            "y": 4.74
+          },
+          
+          "_comment_is_return": "boolean: whether the finger returns to its original position or not after picking the item",
           "is_return": true
         },
         {
@@ -303,9 +335,12 @@
     }
   ],
 
+  "_comment_characters_set": "list: characters set to be placed on the buttons",
   "characters_set": [
     {
+      "_comment_character": "string (unique): character to be placed on the button",
       "character": "1",
+      "_comment_button_id": "integer (unique): button id related to the character to fix its position, or set to `null` to make it searchable",
       "button_id": 1
     },
     {
