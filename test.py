@@ -9,8 +9,8 @@ from classes.genetic import Genetic
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--genetic-config', default='genetic_config.json')
-    parser.add_argument('--testing-corpus', default='searching_corpus')
+    parser.add_argument('--genetic-config', default='search_dir/genetic_config.json')
+    parser.add_argument('--testing-corpus', default='search_dir/searching_corpus')
     args = parser.parse_args()
 
     info_log('Load genetic config file: %s' % args.genetic_config)

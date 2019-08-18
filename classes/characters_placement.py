@@ -45,10 +45,9 @@ class CharactersPlacement:
         for i in range(len(self.characters_set)):
             if self.characters_set[i].button_id != None:
                 fixed_characters.append(self.characters_set[i])
-        self.characters_set = [character for character in self.characters_set \
-            if character.button_id == None]
+        self.characters_set = [character for character in self.characters_set if character.button_id == None]
 
-        fixed_characters = list(sorted(fixed_characters, key=lambda character: character.button_id))
+        fixed_characters = sorted(fixed_characters, key=lambda character: character.button_id)
 
         for character in fixed_characters:
             self.characters_set.insert(character.button_id - 1, character)

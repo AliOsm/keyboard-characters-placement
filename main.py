@@ -32,10 +32,9 @@ if __name__ == '__main__':
     genetic = Genetic(
         number_of_generations=genetic_config['number_of_generations'],
         number_of_characters_placements=genetic_config['number_of_characters_placements'],
-        number_of_accepted_characters_placements=
-                                genetic_config['number_of_accepted_characters_placements'],
+        number_of_accepted_characters_placements=genetic_config['number_of_accepted_characters_placements'],
         number_of_randomly_injected_characters_placements=
-                                genetic_config['number_of_randomly_injected_characters_placements'],
+                                        genetic_config['number_of_randomly_injected_characters_placements'],
         number_of_mutation_operations=genetic_config['number_of_mutation_operations'],
         corpus_path=genetic_config['corpus_path'],
         searching_corpus_size=genetic_config['searching_corpus_size'],
@@ -51,8 +50,7 @@ if __name__ == '__main__':
         genetic.keyboard_structure,
         genetic.testing_corpus
     )
-    info_log('Best characters placement fitness value on testing set: %s'
-                                                    % genetic.best_characters_placement.fitness)
+    info_log('Best characters placement fitness value on testing set: %s' % genetic.best_characters_placement.fitness)
 
     info_log('Visualize best characters placement found by genetic algorithm')
     genetic.keyboard_structure.visualize(

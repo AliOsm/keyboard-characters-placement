@@ -21,7 +21,7 @@ class KeyboardStructure:
                 size=button['size']
             ))
 
-        self.buttons = list(sorted(self.buttons, key=lambda button: button.id))
+        self.buttons = sorted(self.buttons, key=lambda button: button.id)
 
         self._check_buttons_overlapping()
 
@@ -30,7 +30,7 @@ class KeyboardStructure:
             self.hands.append(Hand(fingers=hand['fingers']))
 
     def smallest_distance_from_button_to_finger(self, button_id):
-        minimum_distance_value = 1e9
+        minimum_distance_value = float('inf')
         minimum_distance_index = (-1, -1)
 
         for i, hand in enumerate(self.hands):
@@ -102,8 +102,7 @@ class KeyboardStructure:
 
     def _check_buttons_overlapping(self):
         for i in range(len(self.buttons)):
-            for j in range(i, len(self.buttons)):
-                if i == j: continue
+            for j in range(i + 1, len(self.buttons)):
                 if self.buttons[i].is_overlapping(self.buttons[j]):
                     warning_log('buttons %s and %s are overlapped' % (i + 1, j + 1))
 
