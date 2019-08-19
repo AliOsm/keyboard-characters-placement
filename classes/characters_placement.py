@@ -34,9 +34,9 @@ class CharactersPlacement:
                     continue
 
                 fitness += smallest_distance[character]
-        self.fitness = fitness
+        self.fitness = round(fitness, 2)
 
-        return fitness
+        return self.fitness
 
     def mutate(self, maximum_number_of_mutation_operations):
         number_of_mutation_operations = np.random.randint(0, maximum_number_of_mutation_operations)
