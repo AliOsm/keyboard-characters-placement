@@ -5,6 +5,7 @@ import time
 import math
 import numpy as np
 
+from multiprocessing import Process, Manager
 from helpers import *
 
 class Genetic:
@@ -19,6 +20,8 @@ class Genetic:
         searching_corpus_size,
         testing_corpus_size,
         maximum_line_length,
+        random_seed,
+        maximum_number_of_processes,
         keyboard_structure,
         initial_characters_placement
     ):
@@ -27,13 +30,16 @@ class Genetic:
         self.number_of_accepted_characters_placements = number_of_accepted_characters_placements
         self.number_of_randomly_injected_characters_placements = number_of_randomly_injected_characters_placements
         self.maximum_number_of_mutation_operations = maximum_number_of_mutation_operations
+        self.maximum_number_of_processes = maximum_number_of_processes
         self.keyboard_structure = keyboard_structure
         self.initial_characters_placement = initial_characters_placement
         self._regex = re.compile('[^%s]' % ''.join(sorted(set(self.initial_characters_placement))))
 
         self.corpus = open(corpus_path, 'r').read().split('\n')
         self.corpus = [line for line in self.corpus if len(line) <= maximum_line_length]
-        np.random.shuffle(self.corpus)
+
+        rng = np.random.RandomState(random_seed)
+        rng.shuffle(self.corpus)
 
         self.searching_corpus = [self._preprocess_line(line) for line in self.corpus[:searching_corpus_size]]
 
@@ -81,14 +87,30 @@ class Genetic:
         info_log('Time taken for genetic algorithm is %s minutes' % (self.time))
 
     def calculate_fitness_for_characters_placements(self):
+        manager = Manager()
+        fitness_dict = manager.dict()
+
+        for i in range(0, len(self.characters_placements), self.maximum_number_of_processes):
+            print('Calculating fitness function for characters placements #%s to #%s' % \
+                (i + 1, min(i + self.maximum_number_of_processes, len(self.characters_placements))), end='\r')
+
+            processes = list()
+            for j in range(i, min(i + self.maximum_number_of_processes, len(self.characters_placements))):
+                process = Process(target=self.characters_placements[j].calculate_fitness_parallel, args=[self.keyboard_structure, self.searching_corpus, fitness_dict, j])
+                process.start()
+                processes.append(process)
+
+            for process in processes:
+                process.join()
+
         best_fitness_value = float('inf')
         best_characters_placement = None
         for i, characters_placement in enumerate(self.characters_placements):
-            print('Calculating fitness function for characters placement #%s' % (i + 1), end='\r')
-            characters_placement.calculate_fitness(self.keyboard_structure, self.searching_corpus)
+            characters_placement.fitness = fitness_dict[i]
             if characters_placement.fitness < best_fitness_value:
                 best_fitness_value = characters_placement.fitness
                 best_characters_placement = characters_placement
+
         return best_characters_placement
 
     def natural_selection_and_crossover(self):

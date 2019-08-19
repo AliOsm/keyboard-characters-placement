@@ -2,12 +2,14 @@
     "number_of_generations": 100,
     "number_of_characters_placements": 5000,
     "number_of_accepted_characters_placements": 10,
-    "number_of_randomly_injected_characters_placements": 1000,
+    "number_of_randomly_injected_characters_placements": 500,
     "maximum_number_of_mutation_operations": 5,
     "corpus_path": "data_dir/TED2013 v1.1.txt",
     "searching_corpus_size": 10000,
     "testing_corpus_size": 10000,
     "maximum_line_length": 500,
+    "random_seed": 961,
+    "maximum_number_of_processes": 25,
 
     "keyboard_structure": {
         "_comment_name": "string: name of the keyboard structure",

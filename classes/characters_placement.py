@@ -19,24 +19,12 @@ class CharactersPlacement:
         np.random.shuffle(self.characters_set)
         self._order_fixed_characters()
 
-    def calculate_fitness(self, keyboard_structure, searching_corpus):
-        fitness = 0
-
-        smallest_distance = dict()
-        for i, character in enumerate(self.characters_set):
-            smallest_distance[character.character] = \
-                keyboard_structure.smallest_distance_from_button_to_finger(i)
-
-        for line in searching_corpus:
-            for character in line:
-                if character not in smallest_distance:
-                    warning_log('Found unrecognized character \'%s\'' % character)
-                    continue
-
-                fitness += smallest_distance[character]
-        self.fitness = round(fitness, 2)
-
+    def calculate_fitness_single(self, keyboard_structure, searching_corpus):
+        self.fitness = round(self._calculate_fitness(keyboard_structure, searching_corpus), 2)
         return self.fitness
+
+    def calculate_fitness_parallel(self, keyboard_structure, searching_corpus, fitness_dict, index):
+        fitness_dict[index] = round(self._calculate_fitness(keyboard_structure, searching_corpus), 2)
 
     def mutate(self, maximum_number_of_mutation_operations):
         number_of_mutation_operations = np.random.randint(0, maximum_number_of_mutation_operations)
@@ -58,11 +46,23 @@ class CharactersPlacement:
         for character in fixed_characters:
             self.characters_set.insert(character.button_id - 1, character)
 
-    def _order_of_character(self, character):
-        for i in range(len(self.characters_set)):
-            if character == self.characters_set[i].character:
-                return i
-        return -1
+    def _calculate_fitness(self, keyboard_structure, searching_corpus):
+        fitness = 0
+
+        smallest_distance = dict()
+        for i, character in enumerate(self.characters_set):
+            smallest_distance[character.character] = \
+                keyboard_structure.smallest_distance_from_button_to_finger(i)
+
+        for line in searching_corpus:
+            for character in line:
+                if character not in smallest_distance:
+                    warning_log('Found unrecognized character \'%s\'' % character)
+                    continue
+
+                fitness += smallest_distance[character]
+
+        return fitness
 
     def _non_fixed_random_character(self):
         rand = np.random.randint(0, len(self.characters_set) - 1)

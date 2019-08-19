@@ -40,13 +40,15 @@ if __name__ == '__main__':
         searching_corpus_size=genetic_config['searching_corpus_size'],
         testing_corpus_size=genetic_config['testing_corpus_size'],
         maximum_line_length=genetic_config['maximum_line_length'],
+        random_seed=genetic_config['random_seed'],
+        maximum_number_of_processes=genetic_config['maximum_number_of_processes'],
         keyboard_structure=keyboard_structure,
         initial_characters_placement=initial_characters_placement
     )
     genetic.start()
     genetic.save_searching_and_testing_corpus(os.path.dirname(args.genetic_config))
 
-    genetic.best_characters_placement.calculate_fitness(
+    genetic.best_characters_placement.calculate_fitness_single(
         genetic.keyboard_structure,
         genetic.testing_corpus
     )
