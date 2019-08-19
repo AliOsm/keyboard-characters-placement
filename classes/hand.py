@@ -5,6 +5,5 @@ class Hand:
         self.fingers = list()
         for finger in fingers:
             self.fingers.append(Finger(
-                location=finger['location'],
-                is_return=finger['is_return']
+                location=finger['location']
             ))

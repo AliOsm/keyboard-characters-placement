@@ -35,7 +35,7 @@ if __name__ == '__main__':
         number_of_accepted_characters_placements=genetic_config['number_of_accepted_characters_placements'],
         number_of_randomly_injected_characters_placements=
                                         genetic_config['number_of_randomly_injected_characters_placements'],
-        number_of_mutation_operations=genetic_config['number_of_mutation_operations'],
+        maximum_number_of_mutation_operations=genetic_config['maximum_number_of_mutation_operations'],
         corpus_path=genetic_config['corpus_path'],
         searching_corpus_size=genetic_config['searching_corpus_size'],
         testing_corpus_size=genetic_config['testing_corpus_size'],

@@ -14,7 +14,7 @@ class Genetic:
         number_of_characters_placements,
         number_of_accepted_characters_placements,
         number_of_randomly_injected_characters_placements,
-        number_of_mutation_operations,
+        maximum_number_of_mutation_operations,
         corpus_path,
         searching_corpus_size,
         testing_corpus_size,
@@ -26,7 +26,7 @@ class Genetic:
         self.number_of_characters_placements = number_of_characters_placements
         self.number_of_accepted_characters_placements = number_of_accepted_characters_placements
         self.number_of_randomly_injected_characters_placements = number_of_randomly_injected_characters_placements
-        self.number_of_mutation_operations = number_of_mutation_operations
+        self.maximum_number_of_mutation_operations = maximum_number_of_mutation_operations
         self.keyboard_structure = keyboard_structure
         self.initial_characters_placement = initial_characters_placement
         self._regex = re.compile('[^%s]' % ''.join(sorted(set(self.initial_characters_placement))))
@@ -54,6 +54,7 @@ class Genetic:
             self.characters_placements[-1].randomize()
 
         self.time = -1
+        self.best_characters_placement = None
 
     def start(self):
         start_time = time.time()
@@ -62,17 +63,19 @@ class Genetic:
             info_log('Start generation number %s' % (generation + 1))
 
             info_log('Calculate fitness function for each characters placement')
-            self.best_characters_placement = self.calculate_fitness_for_characters_placements()
+            best_characters_placement = self.calculate_fitness_for_characters_placements()
+            if self.best_characters_placement is None or best_characters_placement.fitness < self.best_characters_placement.fitness:
+                self.best_characters_placement = best_characters_placement
             info_log('Best characters placement fitness value: %s' % self.best_characters_placement.fitness)
 
             info_log('Start natural selection and crossover')
             self.natural_selection_and_crossover()
 
-            info_log('Start random injection')
-            self.random_injection()
-
             info_log('Start mutating characters placements')
             self.mutate_characters_placements()
+
+            info_log('Start random injection')
+            self.random_injection()
 
         self.time = round((time.time() - start_time) / 60, 2)
         info_log('Time taken for genetic algorithm is %s minutes' % (self.time))
@@ -129,8 +132,8 @@ class Genetic:
             self.characters_placements.append(random_characters_placement)
 
     def mutate_characters_placements(self):
-        for characters_placement in self.characters_placements[self.number_of_accepted_characters_placements:]:
-            characters_placement.mutate(self.number_of_mutation_operations)
+        for characters_placement in self.characters_placements:
+            characters_placement.mutate(self.maximum_number_of_mutation_operations)
 
     def save_searching_and_testing_corpus(self, dirpath):
         with open(os.path.join(dirpath, 'searching_corpus'), 'w') as file:

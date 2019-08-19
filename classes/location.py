@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 class Location:
     def __init__(self, x, y):
@@ -6,4 +7,6 @@ class Location:
         self.y = y
 
     def euclidean_distance(self, other):
-        return math.sqrt(((self.x - other.x) * (self.x - other.x)) + ((self.y - other.y) * (self.y - other.y)))
+        xx = self.x - other.x
+        yy = self.y - other.y
+        return math.sqrt(xx * xx + yy * yy)

@@ -31,24 +31,13 @@ class KeyboardStructure:
 
     def smallest_distance_from_button_to_finger(self, button_id):
         minimum_distance_value = float('inf')
-        minimum_distance_index = (-1, -1)
 
         for i, hand in enumerate(self.hands):
             for j, finger in enumerate(hand.fingers):
-                temp_minimum_distance = finger.actual_location.euclidean_distance(self.buttons[button_id].location)
-                if minimum_distance_value > temp_minimum_distance:
-                    minimum_distance_value = temp_minimum_distance
-                    minimum_distance_index = (i, j)
-
-        if not self.hands[minimum_distance_index[0]].fingers[minimum_distance_index[1]].is_return:
-            self.hands[minimum_distance_index[0]].fingers[minimum_distance_index[1]].actual_location = copy.deepcopy(self.buttons[button_id].location)
+                temp_minimum_distance = finger.location.euclidean_distance(self.buttons[button_id].location)
+                minimum_distance_value = min(minimum_distance_value, temp_minimum_distance)
 
         return minimum_distance_value
-
-    def reset_fingers_locations(self):
-        for hand in self.hands:
-            for finger in hand.fingers:
-                finger.reset_location()
 
     def visualize(
         self,
