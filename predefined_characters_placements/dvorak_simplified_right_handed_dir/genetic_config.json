@@ -1,47 +1,13 @@
 {
-    "number_of_generations": 100,
-    "number_of_characters_placements": 5000,
-    "number_of_accepted_characters_placements": 10,
-    "number_of_randomly_injected_characters_placements": 500,
-    "maximum_number_of_mutation_operations": 5,
-    "corpus_path": "data_dir/TED2013 v1.1.txt",
-    "searching_corpus_size": 10000,
-    "testing_corpus_size": 10000,
-    "maximum_line_length": 500,
-    "random_seed": 961,
-    "maximum_number_of_processes": 25,
-
     "keyboard_structure": {
-        "_comment_name": "string: name of the keyboard structure",
         "name": "Full Layout",
-
-        "_comment_width": "float: width of the keyboard layout in centimeters",
         "width": 25.67,
-
-        "_comment_height": "float: height of the keyboard layout in centimeters",
         "height": 9.48,
-
-        "_comment_buttons": "list: buttons in the keyboard layout",
         "buttons": [
             {
-                "_comment_id": "integer (unique): button id",
                 "id": 1,
-
-                "_comment_location": "xy-axis of the top-left corner of the button",
-                "location": {
-                    "_comment_x": "float: x-axis of the top-left corner of the button",
-                    "x": 2.21,
-                    "_comment_y": "float: y-axis of the top-left corner of the button",
-                    "y": 0.33
-                },
-
-                "_comment_size": "size of the button starting from the top-left corner",
-                "size": {
-                    "_comment_width": "float: button width in centimeters",
-                    "width": 1.55,
-                    "_comment_height": "float: button height in centimeters",
-                    "height": 1.5
-                }
+                "location": {"x": 2.21, "y": 0.33},
+                "size": {"width": 1.55, "height": 1.5}
             },
             {
                 "id": 2,
@@ -276,36 +242,15 @@
         ]
     },
 
-    "_comment_hands": "list: hands on the keyboard layout",
     "hands": [
         {
-            "_comment_fingers": "list: fingers in the hand",
             "fingers": [
                 {
-                    "_comment_location": "xy-axis of the center point of the finger",
-                    "location": {
-                        "_comment_x": "float: x-axis of the center point of the finger",
-                        "x": 4.385,
-                        "_comment_y": "float: y-axis of the center point of the finger",
-                        "y": 4.74
-                    }
+                    "location": {"x": 11.905, "y": 4.74}
                 },
                 {
-                    "location": {"x": 6.265, "y": 4.74}
+                    "location": {"x": 13.785, "y": 4.74}
                 },
-                {
-                    "location": {"x": 8.145, "y": 4.74}
-                },
-                {
-                    "location": {"x": 10.025, "y": 4.74}
-                },
-                {
-                    "location": {"x": 10.025, "y": 8.4}
-                }
-            ]
-        },
-        {
-            "fingers": [
                 {
                     "location": {"x": 15.665, "y": 4.74}
                 },
@@ -313,24 +258,15 @@
                     "location": {"x": 17.545, "y": 4.74}
                 },
                 {
-                    "location": {"x": 19.425, "y": 4.74}
-                },
-                {
-                    "location": {"x": 21.305, "y": 4.74}
-                },
-                {
-                    "location": {"x": 15.665, "y": 8.4}
+                    "location": {"x": 11.905, "y": 8.4}
                 }
             ]
         }
     ],
 
-    "_comment_characters_set": "list: characters set to be placed on the buttons",
     "characters_set": [
         {
-            "_comment_character": "string (unique): character to be placed on the button",
             "character": "1",
-            "_comment_button_id": "integer (unique): button id related to the character to fix its position, or set to `null` to make it searchable",
             "button_id": 1
         },
         {
@@ -346,103 +282,55 @@
             "button_id": 4
         },
         {
-            "character": "5",
+            "character": "j",
             "button_id": 5
         },
         {
-            "character": "6",
+            "character": "l",
             "button_id": 6
         },
         {
-            "character": "7",
+            "character": "m",
             "button_id": 7
         },
         {
-            "character": "8",
+            "character": "f",
             "button_id": 8
         },
         {
-            "character": "9",
+            "character": "p",
             "button_id": 9
         },
         {
-            "character": "0",
+            "character": "?",
             "button_id": 10
         },
         {
-            "character": "-",
+            "character": "{",
             "button_id": 11
         },
         {
-            "character": "+",
+            "character": "}",
             "button_id": 12
         },
         {
-            "character": "a",
+            "character": "5",
             "button_id": null
         },
         {
-            "character": "b",
-            "button_id": null
-        },
-        {
-            "character": "c",
-            "button_id": null
-        },
-        {
-            "character": "d",
-            "button_id": null
-        },
-        {
-            "character": "e",
-            "button_id": null
-        },
-        {
-            "character": "f",
-            "button_id": null
-        },
-        {
-            "character": "g",
-            "button_id": null
-        },
-        {
-            "character": "h",
-            "button_id": null
-        },
-        {
-            "character": "i",
-            "button_id": null
-        },
-        {
-            "character": "j",
-            "button_id": null
-        },
-        {
-            "character": "k",
-            "button_id": null
-        },
-        {
-            "character": "l",
-            "button_id": null
-        },
-        {
-            "character": "m",
-            "button_id": null
-        },
-        {
-            "character": "n",
-            "button_id": null
-        },
-        {
-            "character": "o",
-            "button_id": null
-        },
-        {
-            "character": "p",
+            "character": "6",
             "button_id": null
         },
         {
             "character": "q",
+            "button_id": null
+        },
+        {
+            "character": ".",
+            "button_id": null
+        },
+        {
+            "character": "o",
             "button_id": null
         },
         {
@@ -454,23 +342,7 @@
             "button_id": null
         },
         {
-            "character": "t",
-            "button_id": null
-        },
-        {
             "character": "u",
-            "button_id": null
-        },
-        {
-            "character": "v",
-            "button_id": null
-        },
-        {
-            "character": "w",
-            "button_id": null
-        },
-        {
-            "character": "x",
             "button_id": null
         },
         {
@@ -478,36 +350,100 @@
             "button_id": null
         },
         {
+            "character": "b",
+            "button_id": null
+        },
+        {
+            "character": ";",
+            "button_id": null
+        },
+        {
+            "character": "+",
+            "button_id": null
+        },
+        {
+            "character": "7",
+            "button_id": null
+        },
+        {
+            "character": "8",
+            "button_id": null
+        },
+        {
             "character": "z",
             "button_id": null
         },
         {
-            "character": "{",
-            "button_id": 23
+            "character": "a",
+            "button_id": null
         },
         {
-            "character": "}",
-            "button_id": 24
+            "character": "e",
+            "button_id": null
         },
         {
-            "character": ";",
-            "button_id": 34
+            "character": "h",
+            "button_id": null
         },
         {
-            "character": "'",
-            "button_id": 35
+            "character": "t",
+            "button_id": null
+        },
+        {
+            "character": "d",
+            "button_id": null
+        },
+        {
+            "character": "c",
+            "button_id": null
+        },
+        {
+            "character": "k",
+            "button_id": null
+        },
+        {
+            "character": "-",
+            "button_id": null
+        },
+        {
+            "character": "9",
+            "button_id": null
+        },
+        {
+            "character": "0",
+            "button_id": null
+        },
+        {
+            "character": "x",
+            "button_id": null
         },
         {
             "character": ",",
-            "button_id": 43
+            "button_id": null
         },
         {
-            "character": ".",
-            "button_id": 44
+            "character": "i",
+            "button_id": null
         },
         {
-            "character": "?",
-            "button_id": 45
+            "character": "n",
+            "button_id": null
+        },
+        {
+            "character": "w",
+            "button_id": null
+        },
+        {
+            "character": "v",
+            "button_id": null
+        },
+        {
+            "character": "g",
+            "button_id": null
+        },
+        {
+            "character": "'",
+            "button_id": null
         },
         {
             "character": " ",

@@ -1,4 +1,5 @@
 import time
+import math
 import random
 
 PX = 37.7952755906
@@ -24,12 +25,16 @@ def cm2px(cm):
 
 def random_color():
     """
-    Randomize an RGB color
+    Randomize a bright RGB color
 
     Return
-    tuple of 3 random numbers in [0 255] representing red, green and blue values
+    tuple of 3 random numbers representing red, green and blue values
     """
-    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+    def gen():
+        return round(10 * math.sqrt(random.randint(100, 255)))
+
+    return (gen(), gen(), gen())
 
 def get_current_time():
     """

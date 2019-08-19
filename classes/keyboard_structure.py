@@ -49,25 +49,18 @@ class KeyboardStructure:
         if characters_placement is None:
             characters_placement = [''] * len(self.buttons)
 
-        img = np.zeros((cm2px(self.height), cm2px(self.width), 3), np.uint8)
+        img = np.ones((cm2px(self.height), cm2px(self.width), 3), np.uint8)
+        for i in range(cm2px(self.height)):
+            for j in range(cm2px(self.width)):
+                img[i][j] = [141, 140, 127]
 
-        for button, character in zip(self.buttons, characters_placement):
+        for button in self.buttons:
             cv.rectangle(
                 img=img,
                 pt1=cm2px((button.top_left.x, button.top_left.y)),
                 pt2=cm2px((button.bottom_right.x, button.bottom_right.y)),
-                color=(255, 255, 255),
-                thickness=2
-            )
-
-            cv.putText(
-                img=img,
-                text=character,
-                org=cm2px((button.text_origin.x, button.text_origin.y)),
-                fontFace=cv.FONT_HERSHEY_SIMPLEX,
-                fontScale=1,
-                color=(255, 255, 255),
-                thickness=2
+                color=(80, 62, 44),
+                thickness=-1
             )
 
         if show_hands:
@@ -79,8 +72,19 @@ class KeyboardStructure:
                         center=cm2px((finger.location.x, finger.location.y)),
                         radius=cm2px(0.5),
                         color=hand_color,
-                        thickness=3
+                        thickness=-1
                     )
+
+        for button, character in zip(self.buttons, characters_placement):
+            cv.putText(
+                img=img,
+                text=character,
+                org=cm2px((button.text_origin.x, button.text_origin.y)),
+                fontFace=cv.FONT_HERSHEY_SIMPLEX,
+                fontScale=1,
+                color=(241, 240, 236),
+                thickness=2
+            )
 
         cv.imshow(self.name, img)
         cv.waitKey(0)

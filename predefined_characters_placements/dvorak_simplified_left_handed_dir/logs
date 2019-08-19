@@ -1,0 +1,13 @@
+info: Mon Aug 19 18:48:32 2019] Load genetic config file: predefined_characters_placements/dvorak_simplified_left_handed_dir/genetic_config.json
+info: Mon Aug 19 18:48:32 2019] Load testing corpus file: searched_characters_placements/search_letters_only_dir/searching_corpus
+info: Mon Aug 19 18:48:32 2019] Construct keyboard structure
+info: Mon Aug 19 18:48:32 2019] Construct initial characters placement
+info: Mon Aug 19 18:48:32 2019] Visualize the characters placement
+info: Mon Aug 19 18:48:33 2019] Fitness value: 2165992.61
+
+info: Mon Aug 19 18:48:38 2019] Load genetic config file: predefined_characters_placements/dvorak_simplified_left_handed_dir/genetic_config.json
+info: Mon Aug 19 18:48:38 2019] Load testing corpus file: searched_characters_placements/search_letters_only_dir/testing_corpus
+info: Mon Aug 19 18:48:38 2019] Construct keyboard structure
+info: Mon Aug 19 18:48:38 2019] Construct initial characters placement
+info: Mon Aug 19 18:48:38 2019] Visualize the characters placement
+info: Mon Aug 19 18:48:40 2019] Fitness value: 2164782.42

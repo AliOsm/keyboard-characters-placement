@@ -12,7 +12,7 @@ class Button:
         self.bottom_right = Location(x=self.location.x + self.size.width, y=self.location.y + self.size.height)
         self.bottom_left = Location(x=self.location.x, y=self.location.y + self.size.height)
         self.center = Location(x=self.location.x + self.size.width / 2, y=self.location.y + self.size.height / 2)
-        self.text_origin = Location(x=self.location.x + 0.25, y=self.location.y + self.size.height - 0.25)
+        self.text_origin = Location(x=self.location.x + 0.25, y=self.location.y + self.size.height - 0.35)
 
     def is_overlapping(self, other):
         if self.top_left.x > other.bottom_right.x or other.top_left.x > self.bottom_right.x:

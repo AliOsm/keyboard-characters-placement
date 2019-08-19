@@ -9,7 +9,7 @@ from classes.genetic import Genetic
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--genetic-config', default='search_dir/genetic_config.json')
+    parser.add_argument('--genetic-config', required=True)
     args = parser.parse_args()
 
     info_log('Load genetic config file: %s' % args.genetic_config)
@@ -41,14 +41,14 @@ if __name__ == '__main__':
         testing_corpus_size=genetic_config['testing_corpus_size'],
         maximum_line_length=genetic_config['maximum_line_length'],
         random_seed=genetic_config['random_seed'],
-        maximum_number_of_processes=genetic_config['maximum_number_of_processes'],
+        number_of_cores=genetic_config['number_of_cores'],
         keyboard_structure=keyboard_structure,
         initial_characters_placement=initial_characters_placement
     )
     genetic.start()
     genetic.save_searching_and_testing_corpus(os.path.dirname(args.genetic_config))
 
-    genetic.best_characters_placement.calculate_fitness_single(
+    genetic.best_characters_placement.calculate_fitness(
         genetic.keyboard_structure,
         genetic.testing_corpus
     )

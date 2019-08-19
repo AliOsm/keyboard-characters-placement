@@ -6,6 +6,7 @@ import math
 import numpy as np
 
 from multiprocessing import Process, Manager
+from threading import Thread
 from helpers import *
 
 class Genetic:
@@ -21,7 +22,7 @@ class Genetic:
         testing_corpus_size,
         maximum_line_length,
         random_seed,
-        maximum_number_of_processes,
+        number_of_cores,
         keyboard_structure,
         initial_characters_placement
     ):
@@ -30,7 +31,7 @@ class Genetic:
         self.number_of_accepted_characters_placements = number_of_accepted_characters_placements
         self.number_of_randomly_injected_characters_placements = number_of_randomly_injected_characters_placements
         self.maximum_number_of_mutation_operations = maximum_number_of_mutation_operations
-        self.maximum_number_of_processes = maximum_number_of_processes
+        self.number_of_cores = number_of_cores
         self.keyboard_structure = keyboard_structure
         self.initial_characters_placement = initial_characters_placement
         self._regex = re.compile('[^%s]' % ''.join(sorted(set(self.initial_characters_placement))))
@@ -87,21 +88,34 @@ class Genetic:
         info_log('Time taken for genetic algorithm is %s minutes' % (self.time))
 
     def calculate_fitness_for_characters_placements(self):
+        def calculate_bucket_fitness(characters_placements, keyboard_structure, searching_corpus, index, fitness_dict):
+            for i, characters_placement in enumerate(characters_placements):
+                characters_placement.calculate_fitness(keyboard_structure, searching_corpus)
+                fitness_dict[index + i] = characters_placement.fitness
+
         manager = Manager()
         fitness_dict = manager.dict()
 
-        for i in range(0, len(self.characters_placements), self.maximum_number_of_processes):
-            print('Calculating fitness function for characters placements #%s to #%s' % \
-                (i + 1, min(i + self.maximum_number_of_processes, len(self.characters_placements))), end='\r')
+        bucket_size = math.ceil(len(self.characters_placements) / self.number_of_cores)
+        processes = list()
+        for i in range(self.number_of_cores):
+            start = i * bucket_size
+            end = start + bucket_size
+            process = Process(
+                target=calculate_bucket_fitness,
+                args=[
+                    self.characters_placements[start:end],
+                    self.keyboard_structure,
+                    self.searching_corpus,
+                    start,
+                    fitness_dict
+                ]
+            )
+            process.start()
+            processes.append(process)
 
-            processes = list()
-            for j in range(i, min(i + self.maximum_number_of_processes, len(self.characters_placements))):
-                process = Process(target=self.characters_placements[j].calculate_fitness_parallel, args=[self.keyboard_structure, self.searching_corpus, fitness_dict, j])
-                process.start()
-                processes.append(process)
-
-            for process in processes:
-                process.join()
+        for process in processes:
+            process.join()
 
         best_fitness_value = float('inf')
         best_characters_placement = None

@@ -1,0 +1,13 @@
+info: Mon Aug 19 18:07:59 2019] Load genetic config file: predefined_characters_placements/qwerty_dir/genetic_config.json
+info: Mon Aug 19 18:07:59 2019] Load testing corpus file: searched_characters_placements/search_letters_only_dir/searching_corpus
+info: Mon Aug 19 18:07:59 2019] Construct keyboard structure
+info: Mon Aug 19 18:07:59 2019] Construct initial characters placement
+info: Mon Aug 19 18:07:59 2019] Visualize the characters placement
+info: Mon Aug 19 18:08:00 2019] Fitness value: 1952789.09
+
+info: Mon Aug 19 18:08:29 2019] Load genetic config file: predefined_characters_placements/qwerty_dir/genetic_config.json
+info: Mon Aug 19 18:08:29 2019] Load testing corpus file: searched_characters_placements/search_letters_only_dir/testing_corpus
+info: Mon Aug 19 18:08:29 2019] Construct keyboard structure
+info: Mon Aug 19 18:08:29 2019] Construct initial characters placement
+info: Mon Aug 19 18:08:29 2019] Visualize the characters placement
+info: Mon Aug 19 18:08:30 2019] Fitness value: 1951077.25
