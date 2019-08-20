@@ -1,4 +1,4 @@
-info: Mon Aug 19 21:23:59 2019] Load genetic config file: searched_characters_placements/search_letters_only_dir/genetic_config.json
+info: Mon Aug 19 21:23:59 2019] Load genetic config file: searched_characters_placements/letters_only_dir/genetic_config.json
 info: Mon Aug 19 21:23:59 2019] Construct keyboard structure
 info: Mon Aug 19 21:23:59 2019] Construct initial characters placement
 info: Mon Aug 19 21:23:59 2019] Start genetic algorithm
