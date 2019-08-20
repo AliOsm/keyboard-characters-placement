@@ -258,24 +258,11 @@
         {
             "fingers": [
                 {
-                    "location": {"x": 4.385, "y": 4.74}
+                    "location": {"x": 11.905, "y": 4.74}
                 },
                 {
-                    "location": {"x": 6.265, "y": 4.74}
+                    "location": {"x": 13.785, "y": 4.74}
                 },
-                {
-                    "location": {"x": 8.145, "y": 4.74}
-                },
-                {
-                    "location": {"x": 10.025, "y": 4.74}
-                },
-                {
-                    "location": {"x": 10.025, "y": 8.4}
-                }
-            ]
-        },
-        {
-            "fingers": [
                 {
                     "location": {"x": 15.665, "y": 4.74}
                 },
@@ -283,13 +270,7 @@
                     "location": {"x": 17.545, "y": 4.74}
                 },
                 {
-                    "location": {"x": 19.425, "y": 4.74}
-                },
-                {
-                    "location": {"x": 21.305, "y": 4.74}
-                },
-                {
-                    "location": {"x": 15.665, "y": 8.4}
+                    "location": {"x": 11.905, "y": 8.4}
                 }
             ]
         }
@@ -338,11 +319,11 @@
         },
         {
             "character": "-",
-            "button_id": null
+            "button_id": 11
         },
         {
             "character": "+",
-            "button_id": null
+            "button_id": 12
         },
         {
             "character": "a",
@@ -450,31 +431,31 @@
         },
         {
             "character": "{",
-            "button_id": null
+            "button_id": 23
         },
         {
             "character": "}",
-            "button_id": null
+            "button_id": 24
         },
         {
             "character": ";",
-            "button_id": null
+            "button_id": 34
         },
         {
             "character": "'",
-            "button_id": null
+            "button_id": 35
         },
         {
             "character": ",",
-            "button_id": null
+            "button_id": 43
         },
         {
             "character": ".",
-            "button_id": null
+            "button_id": 44
         },
         {
             "character": "?",
-            "button_id": null
+            "button_id": 45
         },
         {
             "character": " ",
