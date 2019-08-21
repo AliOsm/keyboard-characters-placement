@@ -18,25 +18,47 @@ def fitness_values_extractor(logs_file_path):
 if __name__ == '__main__':
     searches_to_plot = [
         {
-            'display_name': 'Letters Only',
+            'display_name': 'Letters Only - Two Hands',
             'logs_file_path': 'searched_characters_placements/letters_only_dir/logs',
-            'marker': 'o'
+            'color': 'k',
+            'marker': 'o',
+            'linestyle': 'solid'
         },
         {
-            'display_name': 'Letters and Punctuations',
+            'display_name': 'Letters and Punctuations - Two Hands',
             'logs_file_path': 'searched_characters_placements/letters_and_punctuations_dir/logs',
-            'marker': 's'
+            'color': 'k',
+            'marker': 'o',
+            'linestyle': 'dashed'
         },
         {
             'display_name': 'Letters Only - Left Handed',
             'logs_file_path': 'searched_characters_placements/letters_only_left_handed_dir/logs',
-            'marker': 'D'
+            'color': 'r',
+            'marker': 's',
+            'linestyle': 'solid'
+        },
+        {
+            'display_name': 'Letters and Punctuations - Left Handed',
+            'logs_file_path': 'searched_characters_placements/letters_and_punctuations_left_handed_dir/logs',
+            'color': 'r',
+            'marker': 's',
+            'linestyle': 'dashed'
         },
         {
             'display_name': 'Letters Only - Right Handed',
             'logs_file_path': 'searched_characters_placements/letters_only_right_handed_dir/logs',
-            'marker': 'p'
+            'color': 'b',
+            'marker': 'D',
+            'linestyle': 'solid'
         },
+        {
+            'display_name': 'Letters and Punctuations - Right Handed',
+            'logs_file_path': 'searched_characters_placements/letters_and_punctuations_right_handed_dir/logs',
+            'color': 'b',
+            'marker': 'D',
+            'linestyle': 'dashed'
+        }
     ]
 
     fig = plt.figure()
@@ -51,6 +73,8 @@ if __name__ == '__main__':
             [1] + [i for i in range(5, 101, 5)],
             fitness_values,
             label=search_to_plot['display_name'],
+            linestyle=search_to_plot['linestyle'],
+            color=search_to_plot['color'],
             marker=search_to_plot['marker'],
             markersize=8,
             linewidth=2
