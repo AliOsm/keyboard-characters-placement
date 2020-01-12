@@ -21,6 +21,12 @@ if __name__ == '__main__':
     with open(args.testing_corpus, 'r') as file:
         testing_corpus = file.readlines()
 
+    testing_corpus_dict = dict()
+    for line in testing_corpus:
+        for char in line.strip():
+            try: testing_corpus_dict[char] += 1
+            except: testing_corpus_dict[char] = 1
+
     info_log('Construct keyboard structure')
     keyboard_structure = KeyboardStructure(
         name=genetic_config['keyboard_structure']['name'],
@@ -40,5 +46,5 @@ if __name__ == '__main__':
         save=True
     )
 
-    characters_placement.calculate_fitness(keyboard_structure, testing_corpus)
+    characters_placement.calculate_fitness(keyboard_structure, testing_corpus_dict)
     info_log('Fitness value: %s' % characters_placement.fitness)

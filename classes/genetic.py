@@ -48,12 +48,24 @@ class Genetic:
             warning_log('Searching corpus size didn\'t reach %s, its current size is %s' %
                 (searching_corpus_size, len(self.searching_corpus)))
 
+        self.searching_corpus_dict = dict()
+        for line in self.searching_corpus:
+        	for char in line.strip():
+        		try: self.searching_corpus_dict[char] += 1
+        		except: self.searching_corpus_dict[char] = 1
+
         self.testing_corpus = [self._preprocess_line(line) for line in
                             self.corpus[searching_corpus_size:searching_corpus_size + testing_corpus_size]]
 
         if len(self.testing_corpus) < testing_corpus_size:
             warning_log('Testing corpus size didn\'t reach %s, its current size is %s' %
                 (testing_corpus_size, len(self.testing_corpus)))
+
+        self.testing_corpus_dict = dict()
+        for line in self.testing_corpus:
+        	for char in line.strip():
+        		try: self.testing_corpus_dict[char] += 1
+        		except: self.testing_corpus_dict[char] = 1
 
         self.characters_placements = list()
         for _ in range(self.number_of_characters_placements):
@@ -88,9 +100,9 @@ class Genetic:
         info_log('Time taken for genetic algorithm is %s minutes' % (self.time))
 
     def calculate_fitness_for_characters_placements(self):
-        def calculate_bucket_fitness(characters_placements, keyboard_structure, searching_corpus, index, fitness_dict):
+        def calculate_bucket_fitness(characters_placements, keyboard_structure, searching_corpus_dict, index, fitness_dict):
             for i, characters_placement in enumerate(characters_placements):
-                characters_placement.calculate_fitness(keyboard_structure, searching_corpus)
+                characters_placement.calculate_fitness(keyboard_structure, searching_corpus_dict)
                 fitness_dict[index + i] = characters_placement.fitness
 
         manager = Manager()
@@ -106,7 +118,7 @@ class Genetic:
                 args=[
                     self.characters_placements[start:end],
                     self.keyboard_structure,
-                    self.searching_corpus,
+                    self.searching_corpus_dict,
                     start,
                     fitness_dict
                 ]

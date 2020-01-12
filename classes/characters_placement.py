@@ -19,7 +19,7 @@ class CharactersPlacement:
         np.random.shuffle(self.characters_set)
         self._order_fixed_characters()
 
-    def calculate_fitness(self, keyboard_structure, searching_corpus):
+    def calculate_fitness(self, keyboard_structure, searching_corpus_dict):
         fitness = 0
 
         smallest_distance = dict()
@@ -27,13 +27,13 @@ class CharactersPlacement:
             smallest_distance[character.character] = \
                 keyboard_structure.smallest_distance_from_button_to_finger(i)
 
-        for line in searching_corpus:
-            for character in line.strip():
-                if character not in smallest_distance:
-                    warning_log('Found unrecognized character \'%s\'' % character)
-                    continue
+        for character in searching_corpus_dict:
+            if character not in smallest_distance:
+                warning_log('Found unrecognized character \'%s\'' % character)
+                continue
 
-                fitness += smallest_distance[character]
+            fitness += (smallest_distance[character] * searching_corpus_dict[character])
+
         self.fitness = round(fitness, 2)
 
         return self.fitness

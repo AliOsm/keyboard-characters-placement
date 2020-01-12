@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     genetic.best_characters_placement.calculate_fitness(
         genetic.keyboard_structure,
-        genetic.testing_corpus
+        genetic.testing_corpus_dict
     )
     info_log('Best characters placement fitness value on testing set: %s' % genetic.best_characters_placement.fitness)
 
