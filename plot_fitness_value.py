@@ -88,5 +88,5 @@ if __name__ == '__main__':
     for tick in ax.xaxis.get_major_ticks():
         tick.label.set_fontsize(16)
 
-    plt.legend(fontsize=20)
+    plt.legend(fontsize=15)
     plt.show()
