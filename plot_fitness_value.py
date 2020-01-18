@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 
+plt.style.use('seaborn') # pretty matplotlib plots
+plt.rcParams['figure.figsize'] = (12, 8)
+
 def fitness_values_extractor(logs_file_path):
     with open(logs_file_path, 'r') as file:
         lines = file.readlines()
